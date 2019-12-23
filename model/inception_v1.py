@@ -9,8 +9,8 @@ from keras.utils import np_utils
 num_classes = 10
 
 (img_train, label_train), (img_test, label_test) = cifar10.load_data()
-img_train = np.array([cv2.resize(img_train[i], (128, 128)) for i in range(0, img_train.shape[0])])
-img_test = np.array([cv2.resize(img_test[i], (128, 128)) for i in range(0, img_test.shape[0])])
+img_train = np.array([cv2.resize(img_train[i], (120, 120)) for i in range(0, img_train.shape[0])])
+img_test = np.array([cv2.resize(img_test[i], (120, 120)) for i in range(0, img_test.shape[0])])
 img_train = 1.0 * img_train / 255.0
 img_test = 1.0 * img_test / 255.0
 
@@ -51,7 +51,7 @@ def inception_modulde(x,
 kernel_init = keras.initializers.glorot_uniform()
 bias_init = keras.initializers.Constant(value=0.2)
 
-input_layer = layers.Input(shape=(128, 128, 3))
+input_layer = layers.Input(shape=(120, 120, 3))
 x = layers.Conv2D(64, (7, 7), padding='same', strides=(2, 2), activation='relu', kernel_initializer=kernel_init,
                   bias_initializer=bias_init)(input_layer)
 x = layers.MaxPool2D((3, 3), padding='same', strides=(2, 2))(x)
